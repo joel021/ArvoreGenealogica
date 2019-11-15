@@ -7,8 +7,8 @@ import java.util.Date;
 public class ArvoreGenealogica {
     Elemento raiz;
     
-    public ArvoreGenealogica(){
-        
+    public ArvoreGenealogica(Elemento raiz){
+        raiz.pai = null; // inicio da arvore
     }
     
     public boolean adicionarElemento(Elemento e){
@@ -16,7 +16,24 @@ public class ArvoreGenealogica {
         return false;
     }
     
+    // dois Elementos podem ter o mesmo primeiro nome, então adiciona-se nome com o sobrenome
     public Elemento buscaPorNome(Elemento aux, String nome){
+        // O aux inicialmente é raiz!
+        
+        if(aux!= null){
+            if(aux.nome.equals(nome)){
+                return aux;
+            }else{
+                Elemento e = buscaPorNome(aux.irmao, nome); // busca por todos os filhos desse elemento.
+                
+                if(e != null){
+                    return e; // retorna o valor encontrado
+                }else{
+                    return buscaPorNome(aux.filho, nome); // desce mais um nivel na arvore e percorre todos os irmaos
+                }
+            }
+        }
+        
         return null;
     }
     
