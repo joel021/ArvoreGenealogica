@@ -37,8 +37,19 @@ public class ArvoreGenealogica {
         return null;
     }
     
-    public Elemento buscaPorCidade(Elemento aux, String cidade){
-        return null;
+    // busca por cidade modifica a lista de resultados, pois dois elementos podem estar na mesma cidade
+    public void buscaPorCidade(Elemento aux, ListaEncadeada<Elemento> lista, String cidade){
+        // O aux inicialmente é raiz!
+        
+        if(aux!= null){
+            if(aux.cidade.equals(cidade)){
+                lista.adicionar(aux);
+            }
+            
+            buscaPorCidade(aux.irmao, lista, cidade); // busca por todos os filhos desse elemento.
+               
+            buscaPorCidade(aux.pai, lista, cidade); // desce mais uma vez na arvore e busca por todos irmãos
+        }
     }
     
     
