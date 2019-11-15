@@ -9,7 +9,7 @@ public class ArvoreGenealogica {
     public class Elemento {
         
         Elemento pai; // aponta para um ponteiro que é o pai, o pai do pai é o avô e o atributo conjuge desse é a avó
-        Elemento irmao; // -> se tiver irmão, aponta para ele, esse ponteiro pode ser uma lista simplesmente encadeada
+        Elemento irmao; // se tiver irmão, aponta para ele, esse ponteiro pode ser uma lista simplesmente encadeada
         Elemento filho; // aponta para o primeiro filho -> pode ser uma lista se o filho tiver um irmão
         
         
