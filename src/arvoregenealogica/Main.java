@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package arvoregenealogica;
-
+import java.util.Scanner;
 /**
  *
  * @author Joel
@@ -16,6 +16,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Scanner s = new Scanner(System.in);
+        
     }
     
 }

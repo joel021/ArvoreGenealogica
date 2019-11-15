@@ -7,17 +7,47 @@ import java.util.Date;
 public class ArvoreGenealogica {
     Elemento raiz;
     
-    public ArvoreGenealogica(Elemento raiz){
-        raiz.pai = null; // inicio da arvore
+    public ArvoreGenealogica(String nome, Date nascimento){
+        
+        raiz        = new Elemento(nome, nascimento, null);
     }
     
-    public boolean adicionarElemento(Elemento e){
+    // só será possível adicionar um filho
+    public boolean adicionarElemento(String nome, String cidade, String mae, Date nascimento, String nomePai, Elemento pai){
+        // o parâmetro para adicionar um elemento é o atributo pai
         
-        return false;
+        if(pai == null){
+            // busca o pai
+            pai = buscaPorNome(raiz, nomePai); // pega o pai dele
+        }
+        
+        Elemento novoFilho  = new Elemento(nome, nascimento, pai); //nasceu o(a) menino(a)!
+        
+        // esse filho tem que ter uma mãe cadastrada na arvore, a unica forma é a associação com seu pai
+        if(pai.conjuge.equals("")){
+            pai.conjuge = mae;
+        }
+        
+        //adicionar o filho na arvore
+        
+        Elemento irmaos = pai.filho;
+        while(irmaos.irmao != null){
+            // percorre a lista de irmãos
+            irmaos = irmaos.irmao;
+        }
+        
+        irmaos.irmao = novoFilho;  // agora o novo é o ultimo irmão
+        
+        return true;
     }
+    
+    public Elemento buscaPorNome(String nome){
+        return buscaPorNome(raiz, nome);
+    }
+    
     
     // dois Elementos podem ter o mesmo primeiro nome, então adiciona-se nome com o sobrenome
-    public Elemento buscaPorNome(Elemento aux, String nome){
+    private Elemento buscaPorNome(Elemento aux, String nome){
         // O aux inicialmente é raiz!
         
         if(aux!= null){
@@ -37,8 +67,15 @@ public class ArvoreGenealogica {
         return null;
     }
     
+    public ListaEncadeada<Elemento> buscaPorCidade(String cidade){
+        ListaEncadeada<Elemento> lista = new ListaEncadeada<>();
+        buscaPorCidade(raiz, lista, cidade);
+        
+        return lista;
+    }
+    
     // busca por cidade modifica a lista de resultados, pois dois elementos podem estar na mesma cidade
-    public void buscaPorCidade(Elemento aux, ListaEncadeada<Elemento> lista, String cidade){
+    private void buscaPorCidade(Elemento aux, ListaEncadeada<Elemento> lista, String cidade){
         // O aux inicialmente é raiz!
         
         if(aux!= null){
@@ -51,7 +88,6 @@ public class ArvoreGenealogica {
             buscaPorCidade(aux.pai, lista, cidade); // desce mais uma vez na arvore e busca por todos irmãos
         }
     }
-    
     
     public class Elemento {
         
@@ -130,10 +166,17 @@ public class ArvoreGenealogica {
             this.profissao = profissao;
         }
         
+        
         public Elemento(String nome, Date nascimento, Elemento pai){
             this.nome       = nome;
             this.pai        = pai;
             this.nascimento = nascimento;
+            
+            conjuge = "";
+            profissao = "";
+            
+            filho = null;
+            irmao = null;
         }
         
     }
