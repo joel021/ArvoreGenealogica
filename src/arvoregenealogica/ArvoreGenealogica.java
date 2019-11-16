@@ -1,27 +1,56 @@
 package arvoregenealogica;
 
-import java.util.Date;
+import java.util.ArrayList;
 
 // classe modelo
 
 public class ArvoreGenealogica {
     Elemento raiz;
     
-    public ArvoreGenealogica(String nome, Date nascimento){
+    public ArvoreGenealogica(String nome, String nascimento){
         
         raiz        = new Elemento(nome, nascimento, null);
     }
     
-    // só será possível adicionar um filho
-    public boolean adicionarElemento(String nome, String cidade, String mae, Date nascimento, String nomePai, Elemento pai){
-        // o parâmetro para adicionar um elemento é o atributo pai
+    public ArvoreGenealogica(){
         
-        if(pai == null){
-            // busca o pai
-            pai = buscaPorNome(raiz, nomePai); // pega o pai dele
+        raiz        = null;
+    }
+    
+    // só será possível adicionar um filho
+    public void adicionarElemento(ArvoreRequisicoes contexto, String nome, String cidade, String mae, String nascimento, Elemento pai){
+                
+        // o parâmetro para adicionar um elemento é o atributo pai
+        Elemento novoFilho  = new Elemento(nome, nascimento, pai); //nasceu o(a) menino(a)!
+        novoFilho.setCidade(cidade);
+        novoFilho.setConjuge("Solteiro");
+        novoFilho.setProfissao("Desempregado");
+        
+        // caso inicial
+        if(pai == null) {
+            
+            // pode ser que ele realmente quer colocar o primogenito
+            if(raiz == null){
+                raiz = novoFilho;
+                
+                // resultado
+                ArrayList<Elemento> lista = elementos().paraArrayList();
+                
+                contexto.rAdicionar("Esse é o primogenito", lista);
+                return;
+            }else{
+                System.out.println("raiz não nulo");
+                // pode ser que ele não selecionou o pai na lista fornecida
+                
+                // resultado
+                ArrayList<Elemento> lista = elementos().paraArrayList();
+                contexto.rAdicionar("Não foi possível adicionar esse elemento porque você não disse quem é o pai e ele não é o primogenito.", lista);
+                return;
+            }
         }
         
-        Elemento novoFilho  = new Elemento(nome, nascimento, pai); //nasceu o(a) menino(a)!
+        // caso geral
+        
         
         // esse filho tem que ter uma mãe cadastrada na arvore, a unica forma é a associação com seu pai
         if(pai.conjuge.equals("")){
@@ -31,14 +60,29 @@ public class ArvoreGenealogica {
         //adicionar o filho na arvore
         
         Elemento irmaos = pai.filho;
-        while(irmaos.irmao != null){
-            // percorre a lista de irmãos
-            irmaos = irmaos.irmao;
+        if(irmaos != null){
+            
+            System.out.println("Tem irmão");
+            
+            while(irmaos != null){
+                
+                System.out.println("irmao: "+irmaos.getNome());
+                // percorre a lista de irmãos
+                if(irmaos.irmao == null){
+                    System.out.println("Foi adicionado!");
+                    irmaos.irmao = novoFilho;  // agora o novo é o ultimo irmão
+                    break;
+                }
+                irmaos = irmaos.irmao;
+            }
+            
+        }else{
+            System.out.println("Não tem irmão! Adicionou!");
+            pai.filho = novoFilho;
         }
         
-        irmaos.irmao = novoFilho;  // agora o novo é o ultimo irmão
-        
-        return true;
+        ArrayList<Elemento> lista = elementos().paraArrayList();
+        contexto.rAdicionar("Pessoa adicionada na árvore com sucesso!", lista);
     }
     
     public Elemento buscaPorNome(String nome){
@@ -67,6 +111,8 @@ public class ArvoreGenealogica {
         return null;
     }
     
+    
+    
     public ListaEncadeada<Elemento> buscaPorCidade(String cidade){
         ListaEncadeada<Elemento> lista = new ListaEncadeada<>();
         buscaPorCidade(raiz, lista, cidade);
@@ -89,6 +135,31 @@ public class ArvoreGenealogica {
         }
     }
     
+    //LISTA DE TODOS OS ELEMENTOS
+    public ListaEncadeada<Elemento> elementos(){
+        
+        
+        ListaEncadeada<Elemento> lista = new ListaEncadeada<>();
+        elementos(raiz, lista);
+        
+        return lista;
+    }
+    
+    // busca por cidade modifica a lista de resultados, pois dois elementos podem estar na mesma cidade
+    private void elementos(Elemento aux, ListaEncadeada<Elemento> lista){
+        // O aux inicialmente é raiz!
+        
+        if(aux!= null){
+            lista.adicionar(aux);
+            
+            elementos(aux.irmao, lista); // busca por todos os filhos desse elemento.
+               
+            elementos(aux.filho, lista); // desce mais uma vez na arvore e busca por todos irmãos
+        }
+        
+        
+    }
+    
     public class Elemento {
         
         private Elemento pai; // aponta para um ponteiro que é o pai, o pai do pai é o avô e o atributo conjuge desse é a avó
@@ -99,7 +170,7 @@ public class ArvoreGenealogica {
         private String nome;
         private String cidade;
         private String conjuge;
-        private Date nascimento;
+        private String nascimento;
         private String profissao;
 
         public Elemento getPai() {
@@ -150,11 +221,11 @@ public class ArvoreGenealogica {
             this.conjuge = conjuge;
         }
 
-        public Date getNascimento() {
+        public String getNascimento() {
             return nascimento;
         }
 
-        public void setNascimento(Date nascimento) {
+        public void setNascimento(String nascimento) {
             this.nascimento = nascimento;
         }
 
@@ -167,7 +238,7 @@ public class ArvoreGenealogica {
         }
         
         
-        public Elemento(String nome, Date nascimento, Elemento pai){
+        public Elemento(String nome, String nascimento, Elemento pai){
             this.nome       = nome;
             this.pai        = pai;
             this.nascimento = nascimento;
@@ -178,6 +249,13 @@ public class ArvoreGenealogica {
             filho = null;
             irmao = null;
         }
+        
+    }
+    
+    public interface ArvoreRequisicoes {
+        
+        // esse método recebe o resultado do pedido de adicionar
+        public void rAdicionar(String msg, ArrayList<Elemento> elementos);
         
     }
 }

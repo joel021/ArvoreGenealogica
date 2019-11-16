@@ -1,6 +1,10 @@
 package arvoregenealogica;
 
 // lista comum
+
+import arvoregenealogica.ArvoreGenealogica.Elemento;
+import java.util.ArrayList;
+
 public class ListaEncadeada <T> {
     private Objeto primeiro;
     private int tamanho;
@@ -28,4 +32,22 @@ public class ListaEncadeada <T> {
         
         tamanho++;
     }
+   
+    
+    public ArrayList<T> paraArrayList(){
+        Objeto aux = primeiro;
+        
+        if(aux == null)
+            return null;
+        
+        ArrayList<T> lista = new ArrayList();
+        
+        do {
+            lista.add(aux.elemento);
+            aux = aux.prox;
+        }while(aux != null);
+
+        return lista;
+    }
+    
 }
