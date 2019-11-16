@@ -1,11 +1,8 @@
-
 package arvoregenealogica;
 
-import arvoregenealogica.ArvoreGenealogica.Elemento;
 import arvoregenealogica.controlador_view.TelaInicial;
-import java.util.Date;
 
- 
+
 public class Main {
     ArvoreGenealogica arvore;
     

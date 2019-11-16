@@ -53,9 +53,7 @@ public class ArvoreGenealogica {
         
         
         // esse filho tem que ter uma mãe cadastrada na arvore, a unica forma é a associação com seu pai
-        if(pai.conjuge.equals("")){
-            pai.conjuge = mae;
-        }
+        pai.conjuge = mae;
         
         //adicionar o filho na arvore
         
@@ -129,9 +127,9 @@ public class ArvoreGenealogica {
                 lista.adicionar(aux);
             }
             
-            buscaPorCidade(aux.irmao, lista, cidade); // busca por todos os filhos desse elemento.
+            buscaPorCidade(aux.filho, lista, cidade); 
                
-            buscaPorCidade(aux.pai, lista, cidade); // desce mais uma vez na arvore e busca por todos irmãos
+            buscaPorCidade(aux.irmao, lista, cidade); 
         }
     }
     
