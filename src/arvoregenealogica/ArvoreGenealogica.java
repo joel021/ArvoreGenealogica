@@ -168,8 +168,8 @@ public class ArvoreGenealogica {
     }
     
     
-    public void getPrimogenio(){
-        System.out.println("Nome: " +raiz.getNome()+ ", Cidade: " + raiz.getCidade() + ", Conjugue: " + raiz.getConjuge());
+    public String getPrimogenio(){
+        return raiz.getNome();
     }
     
     public class Elemento {

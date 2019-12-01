@@ -396,7 +396,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(arvore.getRaiz() != null)
-            arvore.getPrimogenio();
+            jlabelResultado.setText("Primogenio: "+ arvore.getPrimogenio());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -434,56 +434,117 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Elemento aux = listaPais.get(pPaiSelecionado);
-        if(aux.getPai() != null){
-            if(aux.getPai().getPai() != null){
-                System.out.println("Avó: " + aux.getPai().getPai().getConjuge());
-                jlabelResultado.setText("Avó: " + aux.getPai().getPai().getConjuge());
-            }else{
-                jlabelResultado.setText("Parece que não tem avó");
-            }
-        }else{
-            jlabelResultado.setText("Parece que não tem avó");
+        if(aux == null){
+            jlabelResultado.setText("É necessario selecionar uma pessoa");
+            return;
         }
+        int n = 0;
+        while(n <= 1 ){
+            if(aux.getPai() != null){
+                aux = aux.getPai();
+            }else{
+                jlabelResultado.setText("Parece que não tem Avó");
+                return;
+            }
+            n++;
+        }
+        jlabelResultado.setText("Avó: " + aux.getConjuge());
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // avo
         Elemento aux = listaPais.get(pPaiSelecionado);
-        
-        if(aux.getPai() != null){
-            if(aux.getPai().getPai() != null){
-                System.out.println("Avô: " + aux.getPai().getPai().getNome() );
-                jlabelResultado.setText("Avô: " + aux.getPai().getPai().getNome());
-            }else{
-                jlabelResultado.setText("Parece que não tem avô");
-            }
-        }else{
-            jlabelResultado.setText("Parece que não tem avô");
+        if(aux == null){
+            jlabelResultado.setText("É necessario selecionar uma pessoa");
+            return;
         }
+        int n = 0;
+        while(n <= 1 ){
+            if(aux.getPai() != null){
+                aux = aux.getPai();
+            }else{
+                jlabelResultado.setText("Parece que não tem Avô");
+                return;
+            }
+            n++;
+        }
+        jlabelResultado.setText("Avô: " + aux.getNome());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Elemento aux = listaPais.get(pPaiSelecionado);
-        System.out.println("Bisavó: " + aux.getPai().getPai().getPai().getConjuge() );
-        jlabelResultado.setText("Bisavó: " + aux.getPai().getPai().getPai().getConjuge());
+        if(aux == null){
+            jlabelResultado.setText("É necessario selecionar uma pessoa");
+            return;
+        }
+        int n = 0;
+        while(n <= 2 ){
+            if(aux.getPai() != null){
+                aux = aux.getPai();
+            }else{
+                jlabelResultado.setText("Parece que não tem Bisavó");
+                return;
+            }
+            n++;
+        }
+        jlabelResultado.setText("Bisavó: " + aux.getConjuge());
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         Elemento aux = listaPais.get(pPaiSelecionado);
-        System.out.println("Bisavô: " + aux.getPai().getPai().getPai().getNome() );
-        jlabelResultado.setText("Tataravô: " + aux.getPai().getPai().getPai().getPai().getNome() );
+        if(aux == null){
+            jlabelResultado.setText("É necessario selecionar uma pessoa");
+            return;
+        }
+        int n = 0;
+        while(n <= 2 ){
+            if(aux.getPai() != null){
+                aux = aux.getPai();
+            }else{
+                jlabelResultado.setText("Parece que não tem Bisavô");
+                return;
+            }
+            n++;
+        }
+        jlabelResultado.setText("Bisavô: " + aux.getNome());
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         Elemento aux = listaPais.get(pPaiSelecionado);
-        System.out.println("Tataravô: " + aux.getPai().getPai().getPai().getPai().getNome() );
-        jlabelResultado.setText("Tataravô: " + aux.getPai().getPai().getPai().getPai().getNome());
+        if(aux == null){
+            jlabelResultado.setText("É necessario selecionar uma pessoa");
+            return;
+        }
+        int n = 0;
+        while(n <= 3 ){
+            if(aux.getPai() != null){
+                aux = aux.getPai();
+            }else{
+                jlabelResultado.setText("Parece que não tem Tataravô");
+                return;
+            }
+            n++;
+        }
+        jlabelResultado.setText("Tataravô: " + aux.getNome());
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         Elemento aux = listaPais.get(pPaiSelecionado);
-        System.out.println("Tataravó: " + aux.getPai().getPai().getPai().getPai().getConjuge() );
-        jlabelResultado.setText("Tataravó: " + aux.getPai().getPai().getPai().getPai().getConjuge());
+        if(aux == null){
+            jlabelResultado.setText("É necessario selecionar uma pessoa");
+            return;
+        }
+        int n = 0;
+        while(n <= 3 ){
+            if(aux.getPai() != null){
+                aux = aux.getPai();
+            }else{
+                jlabelResultado.setText("Parece que não tem Tataravó");
+                return;
+            }
+            n++;
+        }
+        jlabelResultado.setText("Tataravó: " + aux.getConjuge());
     }//GEN-LAST:event_jButton10ActionPerformed
 
 
