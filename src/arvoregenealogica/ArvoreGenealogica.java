@@ -22,7 +22,12 @@ public class ArvoreGenealogica {
         return raiz;
     }
     public void adicionarElemento(ArvoreRequisicoes contexto, String nome, String cidade, String mae, String nascimento, Elemento pai){
-                
+        
+        if(buscaPorNome(nome) != null) {
+            contexto.rAdicionar("Não pode-se inserir duas pessoas com nomes completos idênticos. ",elementos().paraArrayList());
+            return; 
+        }
+
         // o parâmetro para adicionar um elemento é o atributo pai
         Elemento novoFilho  = new Elemento(nome, nascimento, pai); //nasceu o(a) menino(a)!
         novoFilho.setCidade(cidade);
