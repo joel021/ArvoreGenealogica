@@ -18,6 +18,9 @@ public class ArvoreGenealogica {
     }
     
     // só será possível adicionar um filho
+    public Elemento getRaiz(){
+        return raiz;
+    }
     public void adicionarElemento(ArvoreRequisicoes contexto, String nome, String cidade, String mae, String nascimento, Elemento pai){
                 
         // o parâmetro para adicionar um elemento é o atributo pai
@@ -60,14 +63,14 @@ public class ArvoreGenealogica {
         Elemento irmaos = pai.filho;
         if(irmaos != null){
             
-            System.out.println("Tem irmão");
+       //     System.out.println("Tem irmão");
             
             while(irmaos != null){
                 
                 System.out.println("irmao: "+irmaos.getNome());
                 // percorre a lista de irmãos
                 if(irmaos.irmao == null){
-                    System.out.println("Foi adicionado!");
+     //               System.out.println("Foi adicionado!");
                     irmaos.irmao = novoFilho;  // agora o novo é o ultimo irmão
                     break;
                 }
@@ -75,7 +78,7 @@ public class ArvoreGenealogica {
             }
             
         }else{
-            System.out.println("Não tem irmão! Adicionou!");
+   //         System.out.println("Não tem irmão! Adicionou!");
             pai.filho = novoFilho;
         }
         
@@ -155,7 +158,18 @@ public class ArvoreGenealogica {
             elementos(aux.filho, lista); // desce mais uma vez na arvore e busca por todos irmãos
         }
         
+    
         
+    }
+    
+    public String getAvo(Elemento pessoa){
+        buscaPorNome(pessoa.getNome());
+        return "";
+    }
+    
+    
+    public void getPrimogenio(){
+        System.out.println("Nome: " +raiz.getNome()+ ", Cidade: " + raiz.getCidade() + ", Conjugue: " + raiz.getConjuge());
     }
     
     public class Elemento {

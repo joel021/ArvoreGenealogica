@@ -11,6 +11,7 @@ public class ListaEncadeada <T> {
     
     public class Objeto {
         private T elemento;
+        private Objeto ant;
         private Objeto prox;
         
         public Objeto(T elemento){
