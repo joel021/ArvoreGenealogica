@@ -84,7 +84,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
         jLabelPai = new javax.swing.JLabel();
         jLabelMensagem = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButtonMostrarPrimogenito = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -136,11 +136,11 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButtonMostrarPrimogenito.setText("Mostrar Primogenito");
-        jButtonMostrarPrimogenito.setMaximumSize(new java.awt.Dimension(130, 23));
-        jButtonMostrarPrimogenito.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Mostrar Primogenito");
+        jButton1.setMaximumSize(new java.awt.Dimension(130, 23));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonMostrarPrimogenitoActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -210,6 +210,8 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
             }
         });
 
+        jlabelResultado.setText("Resultado");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -221,7 +223,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
                         .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonMostrarPrimogenito, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,7 +246,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonMostrarPrimogenito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -387,10 +389,10 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
         
     }//GEN-LAST:event_jButtonAdicionarActionPerformed
 
-    private void jButtonMostrarPrimogenitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarPrimogenitoActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(arvore.getRaiz() != null)
             arvore.getPrimogenio();
-    }//GEN-LAST:event_jButtonMostrarPrimogenitoActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         Elemento aux = listaPais.get(pPaiSelecionado);
@@ -427,15 +429,32 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         Elemento aux = listaPais.get(pPaiSelecionado);
-        System.out.println("Avó: " + aux.getPai().getPai().getConjuge() );
-        jlabelResultado.setText("Avó: " + aux.getPai().getPai().getConjuge());
+        if(aux.getPai() != null){
+            if(aux.getPai().getPai() != null){
+                System.out.println("Avó: " + aux.getPai().getPai().getConjuge());
+                jlabelResultado.setText("Avó: " + aux.getPai().getPai().getConjuge());
+            }else{
+                jlabelResultado.setText("Parece que não tem avó");
+            }
+        }else{
+            jlabelResultado.setText("Parece que não tem avó");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // avo
         Elemento aux = listaPais.get(pPaiSelecionado);
-        System.out.println("Avô: " + aux.getPai().getPai().getNome() );
-        jlabelResultado.setText("Avô: " + aux.getPai().getPai().getNome());
+        
+        if(aux.getPai() != null){
+            if(aux.getPai().getPai() != null){
+                System.out.println("Avô: " + aux.getPai().getPai().getNome() );
+                jlabelResultado.setText("Avô: " + aux.getPai().getPai().getNome());
+            }else{
+                jlabelResultado.setText("Parece que não tem avô");
+            }
+        }else{
+            jlabelResultado.setText("Parece que não tem avô");
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -464,6 +483,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -474,7 +494,6 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JButton jButtonAdicionar;
-    private javax.swing.JButton jButtonMostrarPrimogenito;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
