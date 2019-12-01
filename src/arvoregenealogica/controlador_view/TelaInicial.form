@@ -86,15 +86,18 @@
                                   </Group>
                                   <Component id="jButtonAdicionar" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabelPai" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" max="32767" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jLabelPai" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -149,6 +152,11 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
+        <Component class="javax.swing.JLabel" name="jLabelPai">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nenhum pai selecionado"/>
+          </Properties>
+        </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ol&#xe1;!"/>
@@ -228,7 +236,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="jTextMae">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabelPai">
+        <Component class="javax.swing.JLabel" name="jLabelPai1">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelMensagem">
         </Component>
@@ -404,7 +412,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jlabelResultado">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Resultado"/>
+                <Property name="text" type="java.lang.String" value="Voc&#xea; n&#xe3;o fez nenhuma requisi&#xe7;&#xe3;o por aqui"/>
               </Properties>
             </Component>
           </SubComponents>

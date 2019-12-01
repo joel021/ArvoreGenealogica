@@ -67,6 +67,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabelPai = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -81,7 +82,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
         jButtonAdicionar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextMae = new javax.swing.JTextField();
-        jLabelPai = new javax.swing.JLabel();
+        jLabelPai1 = new javax.swing.JLabel();
         jLabelMensagem = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -99,6 +100,8 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Arvore Genealogica");
         setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabelPai.setText("Nenhum pai selecionado");
 
         jLabel1.setText("Olá!");
 
@@ -210,7 +213,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
             }
         });
 
-        jlabelResultado.setText("Resultado");
+        jlabelResultado.setText("Você não fez nenhuma requisição por aqui");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -302,12 +305,14 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
                                     .addGap(57, 57, 57)
                                     .addComponent(jTextMae, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jButtonAdicionar))
-                            .addComponent(jLabel6))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelPai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(12, 12, 12)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabelPai, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -503,6 +508,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabelMensagem;
     private javax.swing.JLabel jLabelPai;
+    private javax.swing.JLabel jLabelPai1;
     private javax.swing.JList<String> jListPai;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -536,7 +542,7 @@ public class TelaInicial extends javax.swing.JFrame implements ArvoreRequisicoes
         }
         
         jButtonAdicionar.setEnabled(true);
-        jLabelMensagem.setText(msg);
+        jLabelMensagem.setText(msg+"mensagem");
     }
     
 }
