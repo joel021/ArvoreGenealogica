@@ -5,7 +5,7 @@ import java.util.ArrayList;
 // classe modelo
 
 public class ArvoreGenealogica {
-    Elemento raiz;
+    private Elemento raiz;
     
     public ArvoreGenealogica(String nome, String nascimento){
         
